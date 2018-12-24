@@ -33,16 +33,6 @@
                                    <span class="selected"></span>
                                </a>
                            </li>
-                           <li class="nav-item ">
-                               <a href="dashboard2.html" class="nav-link ">
-                                   <span class="title">Dashboard 2</span>
-                               </a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="dashboard3.html" class="nav-link ">
-                                   <span class="title">Dashboard 3</span>
-                               </a>
-                           </li>
                        </ul>
                    </li>
                    <li class="nav-item">
@@ -52,15 +42,15 @@
                    </li>
                    <li class="nav-item">
                        <a href="#" class="nav-link nav-toggle"> <i class="material-icons">person</i>
-                           <span class="title">Professors</span> <span class="arrow"></span>
+                           <span class="title">Catergory Controller</span> <span class="arrow"></span>
                        </a>
                        <ul class="sub-menu">
                            <li class="nav-item">
-                               <a href="all_professors.html" class="nav-link "> <span class="title">All Professors</span>
+                               <a href="{{ url('category/save')}}" class="nav-link "> <span class="title">Category Entry</span>
                                </a>
                            </li>
                            <li class="nav-item">
-                               <a href="add_professor.html" class="nav-link "> <span class="title">Add Professor</span>
+                           <a href="{{ url('category/manage')}}" class="nav-link "> <span class="title">Category Manage</span>
                                </a>
                            </li>
                            <li class="nav-item">

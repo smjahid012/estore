@@ -66,10 +66,8 @@
             <div class="col-md-12 content-center">
                 <div class="card-plain">
 
-
                      <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="header">
                             <div class="logo-container">
                             <img src="{{asset('backEnd/assets')}}/images/logo.svg" alt="">
@@ -100,22 +98,6 @@
                             <h5><a href="{{ route('password.request') }}" class="link">{{ __('Forgot Your Password?') }}</a></h5>
                         </div>
                     </form>
-
-
-                    {{-- <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form> --}}
-
 
                 </div>
             </div>

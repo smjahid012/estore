@@ -19,3 +19,19 @@ Route::get('/', 'FrontendController@index'); //frontend view
 Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'BackendController@index'); //backend view
+
+
+
+//Category Route with prefix category
+Route::prefix('category')->group(function() {
+
+    Route::get('/save', 'CategoryController@index');
+    Route::post('/save', 'CategoryController@save');
+    Route::get('/manage', 'CategoryController@manage');
+    Route::get('/edit/{id}', 'CategoryController@edit');
+    Route::post('/edit', 'CategoryController@update');
+    Route::get('/delete/{id}', 'CategoryController@destroy');
+
+});
+
+
