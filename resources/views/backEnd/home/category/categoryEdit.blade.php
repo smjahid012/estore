@@ -77,9 +77,9 @@
                     </div>
                 {!! Form::close() !!}
             </div>
-<script>
-document.forms['editForm'].elements['publicationStatus'].value='{{ $category-> publicationStatus }}'
-</script>
+                <script>
+                    document.forms['editForm'].elements['publicationStatus'].value='{{ $category-> publicationStatus }}'
+                </script>
         </div>
      </div>
 </div>

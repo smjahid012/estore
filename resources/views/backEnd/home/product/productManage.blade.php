@@ -1,19 +1,18 @@
 @extends('backEnd.admin')
 
 @section('title_back_area')
-    Dynamic Category Manage
+    Dynamic Product Entry
 @endsection
 
 @section('backEndcontent')
-    <!-- start page content -->
-
-<div class="tab-content">
+   <!-- start page content -->
+   <div class="tab-content">
     <div class="tab-pane active fontawesome-demo" id="tab1">
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-box">
                     <div class="card-head">
-                        <header>All Category Manage</header>
+                        <header>All Product Manage</header>
                         <div class="tools">
                             <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
                             <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
@@ -24,7 +23,7 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-6">
                                 <div class="btn-group">
-                                <a href="{{ url('/category/save')}}" id="addRow" class="btn btn-info">
+                                <a href="{{ url('/product/save')}}" id="addRow" class="btn btn-info">
                                         Add New Category <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
@@ -59,40 +58,49 @@
                         <!--Flashing Different Datas-->
                         {{Session::get('editmessage')}}
                         {{Session::get('delmessage')}}
-                        <h4> Total Item Table: {{$categoryjekonovar->count()}} </h4>
+                        {{-- <h4> Total Item Table: {{$categoryjekonovar->count()}} </h4> --}}
 
                         <thead>
                                 <tr>
                                     <th></th>
                                     <th> SL No </th>
+                                    <th> Product Name </th>
                                     <th> Category Name </th>
+                                    <th> Price </th>
+                                    <th> Qty </th>
                                     <th> Short Descrtiption </th>
+                                    <th> Long Descrtiption </th>
+                                    <th> Picture </th>
                                     <th> Publication Status </th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
 
                             <tbody>
-
                                 <?php
                                     $i=0;
                                 ?>
 
-                                @foreach($categoryjekonovar as $singleCategory)
-
+                                @foreach($products as $product)
                                     <tr class="odd gradeX">
                                         <td></td>
                                         <td class="left">{{ ++$i }}</td>
-                                            <td> {{ $singleCategory->categoryName }}</td>
-                                            <td class="left"> {{ $singleCategory->shortDescription }}</td>
-                                            <td><a href="#">{{ ($singleCategory->publicationStatus == 1) ? 'Published': 'Unpublished' }} </a></td>
+                                            <td> {{ $product->productName }}</td>
+                                            <td> {{ $product->catName }}</td>
+                                            <td> {{ $product->price }}</td>
+                                            <td> {{ $product->qty }}</td>
+                                            <td> {{ $product->catName }}</td>
+                                            <td class="left"> {{ $product->shortDescription }}</td>
+                                            <td class="left"> {{ $product->longDescription }}</td>
+                                            <td><img src= "{{asset($product->pic) }}" width="100" alt="no pic"></td>
+                                            <td><a href="#">{{ ($product->publicationStatus == 1) ? 'Published': 'Unpublished' }} </a></td>
 
                                         <td>
-                                            <a href="{{url('/category/edit/'.$singleCategory->id) }}" class="btn btn-primary btn-xs">
+                                            <a href="{{url('/product/edit/'.$product->id) }}" class="btn btn-primary btn-xs">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
 
-                                            <a href="{{url('/category/delete/'.$singleCategory->id) }}" class="btn btn-danger btn-xs">
+                                            <a href="{{url('/product/delete/'.$product->id) }}" class="btn btn-danger btn-xs">
                                                 <i class="fa fa-trash-o "></i>
                                             </a>
                                         </td>
@@ -111,5 +119,4 @@
 
 </div>
 <!-- end page content -->
-
 @endsection

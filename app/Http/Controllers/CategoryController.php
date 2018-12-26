@@ -71,9 +71,8 @@ class CategoryController extends Controller
     public function manage()
     {
         $categoriestable = Category::all(); //in db slect all from categories
-
+        //$categoriestable = Category::paginate(10);//using eloquent to paginate
         return view('backEnd.home.category.categoryManage',['categoryjekonovar'=>$categoriestable]);
-
     }
 
     /**

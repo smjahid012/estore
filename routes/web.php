@@ -34,4 +34,9 @@ Route::prefix('category')->group(function() {
 
 });
 
+//Product Route with prefix product not yet done
+Route::get('product/save', 'ProductController@index');
+Route::post('product/save', 'ProductController@store');
+
+Route::get('product/manage', 'ProductController@manage');
 

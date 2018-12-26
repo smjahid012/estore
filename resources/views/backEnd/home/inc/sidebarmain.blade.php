@@ -40,6 +40,8 @@
                            <span class="title">Event Management</span>
                        </a>
                    </li>
+
+                <!-- Categroy Url Defined -->
                    <li class="nav-item">
                        <a href="#" class="nav-link nav-toggle"> <i class="material-icons">person</i>
                            <span class="title">Catergory Controller</span> <span class="arrow"></span>
@@ -53,46 +55,28 @@
                            <a href="{{ url('category/manage')}}" class="nav-link "> <span class="title">Category Manage</span>
                                </a>
                            </li>
-                           <li class="nav-item">
-                               <a href="add_professor_bootstrap.html" class="nav-link "> <span class="title">Add Professor Bootstrap</span>
-                               </a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="edit_professor.html" class="nav-link "> <span class="title">Edit Professor</span>
-                               </a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="professor_profile.html" class="nav-link "> <span class="title">About Professor</span>
-                               </a>
-                           </li>
                        </ul>
                    </li>
+                <!-- Categroy Url Defined -->
+
+                <!-- Product Url Defined -->
+
                    <li class="nav-item">
                        <a href="#" class="nav-link nav-toggle"><i class="material-icons">group</i>
-                       <span class="title">Students</span><span class="arrow"></span></a>
+                       <span class="title">Product Controller</span><span class="arrow"></span></a>
                        <ul class="sub-menu">
-                           <li class="nav-item">
-                               <a href="all_students.html" class="nav-link "> <span class="title">All Students</span>
-                               </a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="add_student.html" class="nav-link "> <span class="title">Add Student</span>
-                               </a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="add_student_bootstrap.html" class="nav-link "> <span class="title">Add Student Bootstrap</span>
-                               </a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="edit_student.html" class="nav-link "> <span class="title">Edit Student</span>
-                               </a>
-                           </li>
-                           <li class="nav-item">
-                               <a href="student_profile.html" class="nav-link "> <span class="title">About Student</span>
-                               </a>
-                           </li>
+                            <li class="nav-item">
+                                <a href="{{ url('product/save')}}" class="nav-link "> <span class="title">Product Entry</span>
+                                    </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('product/manage')}}" class="nav-link "> <span class="title">Product Manage</span>
+                                    </a>
+                            </li>
                        </ul>
                    </li>
+                 <!-- Product Url Defined -->
+
                    <li class="nav-item">
                        <a href="#" class="nav-link nav-toggle"> <i class="material-icons">school</i>
                            <span class="title">Courses</span> <span class="arrow"></span>
