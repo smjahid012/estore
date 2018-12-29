@@ -1,7 +1,7 @@
 @extends('backEnd.admin')
 
 @section('title_back_area')
-    Dynamic Product Entry
+    Dynamic Product Manage
 @endsection
 
 @section('backEndcontent')
@@ -24,7 +24,7 @@
                             <div class="col-md-6 col-sm-6 col-6">
                                 <div class="btn-group">
                                 <a href="{{ url('/product/save')}}" id="addRow" class="btn btn-info">
-                                        Add New Category <i class="fa fa-plus"></i>
+                                        Add New Product <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
                             </div>
@@ -58,8 +58,13 @@
                         <!--Flashing Different Datas-->
                         {{Session::get('editmessage')}}
                         {{Session::get('delmessage')}}
-                        {{-- <h4> Total Item Table: {{$categoryjekonovar->count()}} </h4> --}}
-
+                        <h4 style="color:white">{{Session::get('proupdatemess')}}</h4>
+                        <h4 style="color:white">{{Session::get('prodelmess')}}</h4>
+                        {{-- <h4> Total Item Table: {{$products->total()}} </h4>
+                        <h4> Item per page: {{$products->perpage()}} </h4>
+                        <h4> Item On This Page: {{$products->count()}} </h4>
+                        <h4> Page No: {{$products->currentPage()}} </h4>
+                        <h4> Item From: {{$products->firstItem()}} to {{$products->lastItem()}} </h4> --}}
                         <thead>
                                 <tr>
                                     <th></th>
@@ -89,18 +94,21 @@
                                             <td> {{ $product->catName }}</td>
                                             <td> {{ $product->price }}</td>
                                             <td> {{ $product->qty }}</td>
-                                            <td> {{ $product->catName }}</td>
+
                                             <td class="left"> {{ $product->shortDescription }}</td>
                                             <td class="left"> {{ $product->longDescription }}</td>
                                             <td><img src= "{{asset($product->pic) }}" width="100" alt="no pic"></td>
                                             <td><a href="#">{{ ($product->publicationStatus == 1) ? 'Published': 'Unpublished' }} </a></td>
 
                                         <td>
-                                            <a href="{{url('/product/edit/'.$product->id) }}" class="btn btn-primary btn-xs">
+                                            <a href="{{url('/product/view/'.$product->id) }}" target="__blank" class="btn btn-success btn-xs">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a href="{{url('/product/edit/'.$product->id) }}"  class="btn btn-primary btn-xs">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
 
-                                            <a href="{{url('/product/delete/'.$product->id) }}" class="btn btn-danger btn-xs">
+                                            <a href="{{url('/product/delete/'.$product->id) }}" onclick="return confirm('Are you sure to Delete?')" class="btn btn-danger btn-xs" >
                                                 <i class="fa fa-trash-o "></i>
                                             </a>
                                         </td>
@@ -110,6 +118,7 @@
 
                             </tbody>
                         </table>
+                        {{-- {{$products->links()}} --}}
                     </div>
                 </div>
             </div>

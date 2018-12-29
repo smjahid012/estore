@@ -34,12 +34,12 @@ use Faker\Generator as Faker;
 $factory->define(App\Product::class, function (Faker $faker) {
     return [
         'productName' => $faker->word,
-        'categoryId' => 10,
+        'categoryId' => 6,
         'price' => $faker->numberBetween($min = 10, $max = 214748),
         'qty' => $faker->numberBetween($min = 1, $max = 100),
         'shortDescription' => $faker->text,
         'longDescription' => $faker->text,
-        'pic' =>'productImage/6card-success.png',
+        'pic' =>'productImage/9card-danger.png',
         'publicationStatus' => 1,
     ];
 });

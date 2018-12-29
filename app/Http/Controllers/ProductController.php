@@ -28,10 +28,11 @@ class ProductController extends Controller
     public function manage()
     {
         $products = DB::table('products')
-            ->join('categories','categories.id', '=','categoryId')
+            ->join('categories','categories.id', '=','categoryId')//foreign key primary key realtion
             ->select('products.*','categories.categoryName as catName')
+            ->orderBy('id', 'desc')
             ->get();
-
+            //->paginate(5);
             //join('tablenamefrom','table.id', '=', 'desiredtableid' )
             //->select('product all','the field we need');
             //to get data
@@ -91,7 +92,7 @@ class ProductController extends Controller
         $productPic->save();
 
         //savind data with redirect
-        return redirect('/product/save')->with('message','Product Inserted Successfully');
+        return redirect('/product/save')->with('message','Product Inserted Successfully.');
 
     }
 
@@ -101,9 +102,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function singlePage($id)
     {
-        //
+        //echo("$id");
+        //query builder using
+        $productById = DB::table('products')
+            ->join('categories','categories.id', '=','categoryId')//foreign key primary key realtion
+            ->select('products.*','categories.categoryName as catName')
+            ->where('products.id',$id)// product.id is equal to id passing
+            ->first();
+
+        return view('backEnd.home.product.singlePage',['product'=>$productById]);
     }
 
     /**
@@ -114,7 +123,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $productEdit = Product::where('id', $id)->first();//product table all info
+        $categoryAll = Category::where('publicationStatus',1)->get(); //getting categoryall name from category table and paasing value
+
+        return view('backEnd.home.product.productEdit',['product'=>$productEdit, 'categories'=>$categoryAll]); //passing value product edit page
     }
 
     /**
@@ -124,9 +136,45 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //dd($request->all());
+        $productPic = Product::where('id',$request->product_id)->first();
+        if($picInfo = $request->file('pic')){
+
+            if(file_exists($productPic->pic))
+            {
+                unlink($productPic->pic);
+            }
+            $picName = $request->product_id.$picInfo->getClientOriginalName();
+            $path = "productImage/";
+            $picUrl = $path.$picName;
+            $picInfo->move($path,$picName);
+        }
+        else{
+            $picUrl = $productPic->pic;
+        }
+        //product marking & update
+        $product = Product::find($request->product_id);
+        $product->productName = $request->productName;
+        $product->categoryId = $request->categoryId;
+        $product->qty = $request->qty;
+        $product->price = $request->price;
+        $product->shortDescription = $request->shortDescription;
+        $product->longDescription = $request->longDescription;
+        $product->pic = $picUrl;
+        $product->publicationStatus = $request->publicationStatus;
+        $product->save();
+        return redirect('/product/manage/')->with('proupdatemess','Product Update Successfully.');
+        // //pic update & receive
+        // $picInfo = $request->file('pic'); //get pic info
+        // //geting pic name
+        // $picName = $picInfo->getClientOriginalName();
+        // //pic path
+        // $path = 'productImage/';
+        // //pic url
+        // $picUrl = $path.$picName;
+        //move method no use getting error no pic on pic section
     }
 
     /**
@@ -137,6 +185,14 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //pro pic del
+        $productPic = Product::where('id',$id)->first();
+        //if no pic found then unlink
+        if(file_exists($productPic->pic)){
+            unlink($productPic->pic);
+            }
+        $productDelete = Product::find($id); //mark find and delete
+        $productDelete->delete();
+        return redirect('/product/manage/')->with('prodelmess','Product Deleted Successfully.');
     }
 }
