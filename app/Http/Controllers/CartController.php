@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
-use App\Product;
 use DB;
-class FrontendController extends Controller
+use App\Product;
+use App\Category;
+use Illuminate\Support\Facades\Session;
+
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,7 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        return view('frontEnd.home.homecontent');
+        //
     }
 
     /**
@@ -23,16 +25,9 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function product_details($id)
+    public function create()
     {
-        $productById = DB::table('products')
-        ->join('categories','categories.id', '=','categoryId')//foreign key primary key realtion
-        ->select('products.*','categories.categoryName as catName')
-        ->where('products.id',$id)// product.id is equal to id passing
-        ->where('products.publicationStatus',1)
-        ->first();
-
-    return view('frontEnd.home.proDetailPage',['product'=>$productById]);//2 way model binding
+        //
     }
 
     /**
@@ -43,7 +38,20 @@ class FrontendController extends Controller
      */
     public function store(Request $request)
     {
+            $qty= $request->qty;
+            $id = $request->id; //input form name id is given
+        $productCart = DB::table('products')
+            ->where('products.id',$id)// product.id is equal to id passing
+            //error showing id undefined variable solution is get the data through request
+            //just like that $id = $request->id;
+            ->first();
 
+        //checking data getting or not
+        // echo "<pre>";
+        //     print_r($productCart);
+        // echo "</pre>";
+
+    return view('frontEnd.home.cartPage',['product'=>$productCart]);//2 way model binding
     }
 
     /**

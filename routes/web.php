@@ -18,7 +18,8 @@ Auth::routes();
 Route::get('/home', 'BackendController@index'); //backend view
 
 Route::get('/', 'FrontendController@index'); //frontend view
-Route::get('/view_product/{id}','FrontendController@product_details');
+Route::get('/view_product/{id}','FrontendController@product_details');// frontend product showing
+Route::post('/add_to_cart','CartController@store'); //cart controller
 
 //Category Route with prefix category
 Route::prefix('category')->group(function() {
