@@ -12,11 +12,13 @@
 */
 
 
-Route::get('/', 'FrontendController@index'); //frontend view
 
 Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'BackendController@index'); //backend view
+
+Route::get('/', 'FrontendController@index'); //frontend view
+Route::get('/view_product/{id}','FrontendController@product_details');
 
 //Category Route with prefix category
 Route::prefix('category')->group(function() {

@@ -93,7 +93,6 @@ class ProductController extends Controller
 
         //savind data with redirect
         return redirect('/product/save')->with('message','Product Inserted Successfully.');
-
     }
 
     /**

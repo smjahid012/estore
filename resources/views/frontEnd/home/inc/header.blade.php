@@ -93,16 +93,21 @@
             <form>
               <div class="control-group">
                 <ul class="categories-filter animate-dropdown">
-                  <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu" >
-                      <li class="menu-header">Computer</li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
-                    </ul>
-                  </li>
+                    <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
+
+                    {{-- Dynamic Catgory Showing done in search section --}}
+                        <ul class="dropdown-menu" role="menu" >
+                        <?php $all_published_category =DB::table('categories')
+                                    ->where('publicationStatus',1)
+                                    ->get();
+                        foreach ($all_published_category as $singleCategory){?>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ $singleCategory->categoryName}}</a></li>
+                        <?php }?>
+                        </ul>
+                    {{-- Dynamic Catgory Showing done in search section --}}
+                    </li>
                 </ul>
+
                 <input class="search-field" placeholder="Search here..." />
                 <a class="search-button" href="#" ></a> </div>
             </form>
@@ -375,5 +380,4 @@
   <!-- ============================================== NAVBAR : END ============================================== -->
 
 </header>
-
 <!-- ============================================== HEADER : END ============================================== -->
