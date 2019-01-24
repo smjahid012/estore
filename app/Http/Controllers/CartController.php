@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use DB;
 use App\Product;
 use App\Category;
-use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {

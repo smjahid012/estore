@@ -37,7 +37,8 @@
                 <div class="product">
                   <div class="product-image">
                     <div class="image"> <a href="detail.html">
-                        <img  src="{{ $single_product->pic }}" alt=""></a> </div><!-- /.image -->
+                        <img  src="{{ $single_product->pic }}" alt=""></a>
+                    </div><!-- /.image -->
                     <div class="tag new"><span>new</span></div>
                   </div><!-- /.product-image -->
 
@@ -46,7 +47,7 @@
                     <div class="rating rateit-small"></div>
                     <div class="description">Total Quantity In Stock:{{$single_product->qty}}</div>
                     <div class="description">{{$single_product->longDescription}}</div>
-                    <div class="product-price"> <span class="price">${{$single_product->price}} </span> <span class="price-before-discount">$ 800</span> </div><!-- /.product-price -->
+                    <div class="product-price"> <span class="price">{{$single_product->price}} </span> <span class="price-before-discount">$ 800</span> </div><!-- /.product-price -->
                   </div><!-- /.product-info -->
 
                   <div class="cart clearfix animate-effect">

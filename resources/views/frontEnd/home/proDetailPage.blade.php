@@ -19,12 +19,25 @@
                 <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
                 <div class="product-item-holder size-big single-product-gallery small-gallery">
 
+
+
+
                     <div id="owl-single-product">
+                           <?php $productById = DB::table('products')
+                            ->join('categories','categories.id', '=','categoryId')//foreign key primary key realtion
+                            ->select('products.*','categories.categoryName as catName')
+                            ->orderBy('id', 'desc')
+                            ->where('products.publicationStatus',1)
+                            ->first();
+
+                foreach ($productById as $productid) { ?>
+
                         <div class="single-product-gallery-item" id="slide1">
-                            <a data-lightbox="image-1" data-title="Gallery" href="{{ asset($product->pic) }}">
+                            <a data-lightbox="image-1" data-title="Gallery" href="{{ asset($productid->pic) }}">
                             <img class="img-responsive" alt="" src="{{ asset('frontEnd') }}/images/blank.gif" data-echo="{{ asset($product->pic) }}" />
                             </a>
                         </div><!-- /.single-product-gallery-item -->
+
 
                         <div class="single-product-gallery-item" id="slide2">
                             <a data-lightbox="image-1" data-title="Gallery" href="{{ asset('frontEnd') }}/images/products/p9.jpg">
@@ -73,7 +86,7 @@
                                 <img class="img-responsive" alt="" src="{{ asset('frontEnd') }}/images/blank.gif" data-echo="{{ asset('frontEnd') }}/images/products/p16.jpg" />
                             </a>
                         </div><!-- /.single-product-gallery-item -->
-
+     <?php } ?>
                     </div><!-- /.single-product-slider -->
 
 
